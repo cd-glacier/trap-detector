@@ -8,7 +8,7 @@ build: deps ## build main.go.
 	go build src/cmd/main.go
 
 run: ## run main.go.
-	go run src/cmd/main.go --package ./testdata/finder/
+	go run src/cmd/main.go --package ./testdata/
 
 test: ## unit test with gotest. ref: github.com/rakyll/gotest
 	gotest -v ./...
