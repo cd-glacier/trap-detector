@@ -84,10 +84,6 @@ func (s *Shadow) detectExpr(expr ast.Expr) {
 	}
 }
 
-func (s *Shadow) detectIdent(expr ast.Expr) {
-
-}
-
 func (s *Shadow) contains(ident *ast.Ident) bool {
 	for _, v := range s.VarNodes {
 		if v.Name == ident.Name && v.Pos() < ident.Pos() {
