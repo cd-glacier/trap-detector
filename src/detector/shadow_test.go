@@ -51,6 +51,20 @@ func main() {
 				FoundNode{Name: "y"},
 			},
 		},
+		{
+			`
+package main
+func main() {
+	x := 0
+	for true {
+		x := 1
+	}
+}
+			`,
+			[]FoundNode{
+				FoundNode{Name: "x"},
+			},
+		},
 	}
 
 	for _, tt := range tables {
