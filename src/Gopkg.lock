@@ -3,14 +3,6 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:f24ee07f5198d08170bb1be0ee48d8a6c8e119e904e9ad5cec0abe06217cab23"
-  name = "github.com/g-hyoga/auto-test"
-  packages = ["src/logger"]
-  pruneopts = "UT"
-  revision = "e21db59f1b0182bb0c477d5597146a8000da62a0"
-
-[[projects]]
-  branch = "master"
   digest = "1:f44d34fda864bed6d6c71514cd40b2ee097e6e67f745d5d014113e1faa5af8b7"
   name = "github.com/konsorten/go-windows-terminal-sequences"
   packages = ["."]
@@ -80,7 +72,6 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/g-hyoga/auto-test/src/logger",
     "github.com/sirupsen/logrus",
     "github.com/x-cray/logrus-prefixed-formatter",
   ]
