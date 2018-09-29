@@ -43,3 +43,15 @@ func localVariable3() {
 	}
 	log.Println(x)
 }
+
+func localVariable4() {
+	y := 123
+	if x := 10; x == -1 {
+		log.Println("x block")
+	} else if y := 20; y == -1 {
+		log.Println("y block")
+	} else {
+		log.Printf("(x, y) = (%d, %d)\n", x, y)
+	}
+	log.Println(y)
+}

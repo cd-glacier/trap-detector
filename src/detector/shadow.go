@@ -4,6 +4,7 @@ import (
 	"go/ast"
 
 	"github.com/g-hyoga/trap-detector/src/logger"
+	"github.com/k0kubun/pp"
 )
 
 type Shadow struct {
@@ -22,6 +23,7 @@ func (s *Shadow) detect(decl ast.Decl) {
 	switch n := decl.(type) {
 	case *ast.FuncDecl:
 		log.Infof("[shadow] found %s FuncDel.", n.Name.Name)
+		s.VarNodes = []ast.Ident{}
 		s.detectBlockStmt(n.Body)
 	}
 }
@@ -58,6 +60,7 @@ func (s *Shadow) detectAssignStmt(stmt ast.AssignStmt) {
 func (s *Shadow) detectIf(stmt ast.IfStmt) {
 	s.detectExpr(stmt.Cond)
 	s.detectBlockStmt(stmt.Body)
+	s.detectStmt(stmt.Else)
 }
 
 func (s *Shadow) detectFor(stmt ast.ForStmt) {
@@ -78,6 +81,7 @@ func (s *Shadow) detectExpr(expr ast.Expr) {
 func (s *Shadow) contains(ident *ast.Ident) bool {
 	for _, v := range s.VarNodes {
 		if v.Name == ident.Name && v.Pos() < ident.Pos() {
+			pp.Println(ident.Name)
 			return true
 		}
 	}
