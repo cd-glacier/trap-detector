@@ -21,6 +21,7 @@ func main() {
 		log.Error("[main] Failed to finder.GetGoFile: %s", err.Error())
 		panic("[main] Failed to finder.GetGoFiles")
 	}
+	log.Infof("[main] found go files: %+v", filenames)
 
 	for _, filename := range filenames {
 		f, err := parser.ParseFile(token.NewFileSet(), filename, nil, parser.AllErrors)
