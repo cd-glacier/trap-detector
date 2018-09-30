@@ -41,6 +41,8 @@ func (s *Shadow) detectStmt(statement ast.Stmt) {
 		s.detectIf(*stmt)
 	case *ast.ForStmt:
 		s.detectFor(*stmt)
+	case *ast.RangeStmt:
+		s.detectRange(*stmt)
 	case *ast.AssignStmt:
 		s.detectAssignStmt(*stmt)
 	case *ast.BlockStmt: // else
@@ -71,6 +73,10 @@ func (s *Shadow) detectIf(stmt ast.IfStmt) {
 }
 
 func (s *Shadow) detectFor(stmt ast.ForStmt) {
+	s.detectBlockStmt(stmt.Body)
+}
+
+func (s *Shadow) detectRange(stmt ast.RangeStmt) {
 	s.detectBlockStmt(stmt.Body)
 }
 
