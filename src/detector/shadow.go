@@ -77,6 +77,12 @@ func (s *Shadow) detectFor(stmt ast.ForStmt) {
 }
 
 func (s *Shadow) detectRange(stmt ast.RangeStmt) {
+	switch v := stmt.Value.(type) {
+	case *ast.Ident:
+		assignedValueStmt := v.Obj.Decl.(*ast.AssignStmt)
+		s.detectAssignStmt(*assignedValueStmt)
+	}
+
 	s.detectBlockStmt(stmt.Body)
 }
 
@@ -90,6 +96,7 @@ func (s *Shadow) detectExpr(expr ast.Expr) {
 	}
 }
 
+// range, ifの時バグるかも
 func (s *Shadow) contains(ident *ast.Ident) bool {
 	for _, v := range s.VarNodes {
 		if v.Name == ident.Name && v.Pos() < ident.Pos() {

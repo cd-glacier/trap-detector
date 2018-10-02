@@ -65,6 +65,37 @@ func main() {
 				FoundNode{Name: "x"},
 			},
 		},
+		{
+			`
+package main
+func main() {
+	as := []int{1, 2, 3}
+	x := 0
+	for _, a := range as {
+		x := 1
+	}
+}
+			`,
+			[]FoundNode{
+				FoundNode{Name: "x"},
+			},
+		},
+		{
+			`
+package main
+func main() {
+	as := []int{1, 2, 3}
+	a := 0
+	i := 0
+	for i, a := range as {
+	}
+}
+			`,
+			[]FoundNode{
+				FoundNode{Name: "i"},
+				FoundNode{Name: "a"},
+			},
+		},
 	}
 
 	for _, tt := range tables {
